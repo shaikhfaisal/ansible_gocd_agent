@@ -1,0 +1,7 @@
+---
+- hosts: '{{ hosts }}'
+  sudo: yes
+  roles:
+    - ansible_gocd_server
+    - ansible_gocd_agent
+

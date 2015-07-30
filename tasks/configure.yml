@@ -1,0 +1,7 @@
+---
+- name: Drop in the PSK to auto-register with the server
+  template:
+    src: autoregister.properties.j2
+    dest: /var/lib/go-agent/config/autoregister.properties
+  notify:
+    - restart gocd_agent

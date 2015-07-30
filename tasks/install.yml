@@ -1,0 +1,22 @@
+---
+- name: Add debian repo for gocd agent
+  apt_repository:
+    repo: 'deb https://dl.bintray.com/gocd/gocd-deb /'
+    state: 'present'
+
+- name: Add apt key for repo
+  apt_key:
+    state: present
+    url: https://bintray.com/user/downloadSubjectPublicKey?username=gocd
+
+- name: Install gocd_agent packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items: gocd_agent_packages
+
+- name: Ensure gocd_agent is running
+  service:
+    name: go-agent
+    state: started

@@ -1,0 +1,6 @@
+---
+- include: install.yml
+  tags: gocd_agent_install
+
+- include: configure.yml
+  tags: gocd_agent_configure
