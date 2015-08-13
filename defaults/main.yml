@@ -4,3 +4,5 @@ gocd_agent_packages:
   - go-agent
 
 gocd_agent_autoregister_key: "oM.4LW^25aiN(Y`Z8N1~D(QYs#g00+"
+
+gocd_agent_no_of_agents: 2

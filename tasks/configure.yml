@@ -1,7 +1,14 @@
 ---
+- name: Ensure config directory exists
+  file:
+    path: /var/lib/go-agent-{{ item }}/config/autoregister.properties
+    state: directory
+  with_sequence: gocd_agent_no_of_agents
+
 - name: Drop in the PSK to auto-register with the server
   template:
     src: autoregister.properties.j2
-    dest: /var/lib/go-agent/config/autoregister.properties
+    dest: /var/lib/go-agent-{{ item }}/config/autoregister.properties
+  with_sequence: gocd_agent_no_of_agents
   notify:
-    - restart gocd_agent
+    - restart gocd_agents

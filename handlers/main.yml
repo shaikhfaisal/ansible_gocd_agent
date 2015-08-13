@@ -1,5 +1,6 @@
 ---
-- name: restart gocd_agent
+- name: restart gocd_agents
   service:
-    name: go-agent
+    name: go-agent-{{ item }}
     state: restarted
+  with_sequence: gocd_agent_no_of_agents

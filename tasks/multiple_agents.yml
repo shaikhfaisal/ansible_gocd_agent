@@ -1,0 +1,47 @@
+---
+- name: Install multiple agents - startup script
+  file:
+    path: /etc/init.d/go-agent-{{ item }}
+    src: /etc/init.d/go-agent
+    state: link
+    owner: go
+    group: go
+  with_sequence: gocd_agent_no_of_agents
+
+
+- name: Install multiple agents - scripts
+  file:
+    path: /usr/share/go-agent-{{ item }}
+    src: /usr/share/go-agent
+    state: link
+    owner: go
+    group: go
+  with_sequence: gocd_agent_no_of_agents
+
+- name: Install multiple agents - default values
+  command: cp -p /etc/default/go-agent /etc/default/go-agent-{{ item }}
+  with_sequence: gocd_agent_no_of_agents
+
+- name: Install multiple agents - lib files
+  file:
+    path: /var/lib/go-agent-{{ item }}
+    state: directory
+    owner: go
+    group: go
+  with_sequence: gocd_agent_no_of_agents
+
+- name: Install multiple agents - log files
+  file:
+    path: /var/log/go-agent-{{ item }}
+    state: directory
+    owner: go
+    group: go
+  with_sequence: gocd_agent_no_of_agents
+
+- name: Ensure all gocd agents are running
+  service:
+    name: go-agent-{{ item }}
+    state: started
+    enabled: yes
+  with_sequence: gocd_agent_no_of_agents
+  

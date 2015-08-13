@@ -2,5 +2,8 @@
 - include: install.yml
   tags: gocd_agent_install
 
+- include: multiple_agents.yml
+  tags: gocd_agent_multiple_agents
+
 - include: configure.yml
   tags: gocd_agent_configure
