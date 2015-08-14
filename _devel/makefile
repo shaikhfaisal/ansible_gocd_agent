@@ -21,6 +21,8 @@ travis_ci:
 	sudo apt-add-repository -y ppa:ansible/ansible
 	sudo apt-get update
 	sudo apt-get install -y ansible
+	mkdir -p tmp_roles
+	git clone git@github.com:shaikhfaisal/ansible_gocd_server.git tmp_roles/ansible_gocd_server
 	ln -s ../ ansible_gocd_agent
 	ansible-playbook -c local -e "hosts=127.0.0.1" test.yml
 	rm -f ansible_gocd_agent
