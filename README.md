@@ -1,5 +1,5 @@
 #### Build status
-Master branch build status: ![build status](https://api.travis-ci.org/shaikhfaisal/ansible_gocd_server.svg?branch=master)
+Master branch build status: ![build status](https://api.travis-ci.org/shaikhfaisal/ansible_gocd_agent.svg?branch=master)
 
 
 #### Development
